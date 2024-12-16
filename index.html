@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUSICA KJARKAS</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh; /* Altura mínima para que ocupe toda la ventana */
+            background-image: url('fondo 1.jpg'); /* Tu imagen de fondo */
+            background-size: cover; /* Ajusta la imagen para que ocupe toda la pantalla */
+            background-repeat: no-repeat; /* Evita que se repita */
+            background-position: center; /* Centra la imagen */
+            background-attachment: fixed; /* Hace que el fondo sea fijo */
+            background-color: #755721; /* Color de respaldo */
+        }
+
+        header {
+            background-color: #622512;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            z-index: 10; /* Asegura que esté sobre el fondo */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        nav {
+            background-color: #a08f5d;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            position: relative;
+            z-index: 10; /* Asegura que esté sobre el fondo */
+        }
+
+        nav button {
+            background-color: #543b03;
+            color: white;
+            border: none;
+            padding: 1.5% 2%;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 5px;
+        }
+
+        nav button:hover {
+            background-color: #5b0d0d;
+        }
+
+        section {
+            padding: 15px;
+            margin: 30px auto;
+            max-width: 1400px;
+            background-color: #543a03ca;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            overflow: auto;
+            color: white;
+        }
+
+        section h2 {
+            color: #a08f5d;
+        }
+
+        iframe {
+            width: 400px;
+            height: 280px;
+            margin-bottom: 10px;
+            border: none;
+        }
+
+        .back-to-nav {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .back-to-nav a {
+            color: #5b0d0d;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-to-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .table-container {
+            width:100%;
+            display: flex;
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente si hay espacio */
+            
+        }
+        @media(max-width:600px){
+            .table-container{
+                width: 250%;
+            }
+        }
+
+        textarea {
+            width: 550px; /* Ancho fijo */
+            height: 445px; /* Alto fijo */
+            resize: none; /* Evita que el usuario cambie el tamaño */
+            margin-left: 50px; /* Espaciado del lado derecho */
+            margin-right: 10;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            color: black; /* Texto en negro */
+            background-color: #f6f6d1e0; /* Fondo más claro */
+            font-family: 'Times New Roman', Times, serif;
+        }
+        footer {
+            background-color: #622512d7;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 -4px 8px rgba(0,0,0,0.2);
+        }
+        
+
+
+
+
+
+
+        .calculator {
+            border: 1px solid black;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #622512d7;
+            width: 23%;
+        }
+        #display {
+            width: 90%;
+            height: 50px;
+            font-size: 24px;
+            text-align: right;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: #a08f5d;
+        }
+        .button {
+            width: 70px;
+            height: 70px;
+            font-size: 24px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #a08f5d;
+            border: none;
+            border-radius: 5px;
+        }
+        .button:active {
+            background-color: #5b0d0d;
+        }
+        .row {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+        .calculator {
+            width: 70%; /* Ajusta el ancho al 90% del viewport */
+            padding: 20px; /* Reduce el padding */
+        }
+
+        #display {
+            width: 90%; /* Ocupa todo el ancho del contenedor */
+            font-size: 20px; /* Reduce el tamaño de la fuente */
+            height: 40px; /* Ajusta la altura */
+            padding: 5px; /* Reduce el padding interno */
+        }
+
+        .button {
+            width: 60px; /* Reduce el ancho de los botones */
+            height: 60px; /* Reduce la altura */
+            font-size: 20px; /* Reduce el tamaño de la fuente */
+            margin: 3px; /* Reduce los márgenes entre botones */
+        }
+
+        .row {
+            flex-wrap: wrap; /* Permite que los botones se ajusten en filas */
+            justify-content: center; /* Centra los botones si sobran espacios */
+        }
+        }
+
+
+        marquee {
+            display: block;
+            width: 100%; /* El ancho es del 100% de su contenedor */
+            height: auto;
+            white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+            overflow: hidden; /* Esconde el contenido que no cabe */
+            padding: 10px 0; /* Agrega un poco de espacio alrededor */
+            font-size: 1.2em; /* Tamaño de fuente ajustable */
+            
+        }
+
+        /* Se hace responsive ajustando el tamaño del texto en pantallas pequeñas */
+        @media (max-width: 600px) {
+            marquee {
+                font-size: 1em; /* Reduce el tamaño del texto en pantallas pequeñas */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>¡Historia y temas musicales de los Kjarkas!</h1>
+    </header>
+
+    <nav>
+        <button onclick="location.href='#seccion1'">Carrusel</button>
+        <button onclick="location.href='#seccion2'">Imagenes</button>
+        <button onclick="location.href='#seccion3'">Videos</button>
+        <button onclick="location.href='#seccion4'">Area de texto</button>
+        <button onclick="location.href='#seccion5'">Calculadora</button>
+    </nav>
+
+    <section id="seccion1">
+        <h2>Carrusel</h2>
+        <marquee><img src="imagen 1.png" width="500" height="500"><img src="imagen 2.jpg" width="500" height="500"><img src="imagen 3.jpg" width="500" height="500"><img src="imagen 4.jpg" width="500" height="500"><img src="imagen 5.jpg" width="500" height="500"></marquee>
+        <div class="back-to-nav">
+            <a href="#"> Volver al Menú</a>
+        </div>
+    </section>
+
+    <section id="seccion2">
+        <h2>imagenes concierto</h2>
+        <div class="table-container">
+            <table>
+                <tr>
+                    <td><img src="concierto 1.jpg" width="300em" height="200em"></td>
+                    <td><img src="concierto 2.jpeg" width="300em" height="200em"></td>
+                    <td><img src="concierto 3.jpg" width="300em" height="200em"></td>
+                </tr>
+                <tr>
+                    <td><img src="concierto 4.jpg" width="300em" height="200em"></td>
+                    <td><img src="concierto 5.jpg" width="300em" height="200em"></td>
+                    <td><img src="concierto 6.jpg" width="300em" height="200em"></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="back-to-nav">
+            <a href="#">Volver al menú</a>
+        </div>
+    </section>
+
+    <section id="seccion3">
+        
+        <div>
+            <h2>videos</h2>
+        </div>
+        <div>
+            <table cellpadding="4" cellspacing="0">
+                <tr>
+                    <td>
+                        
+                        <iframe width="90%" height="auto" 
+                        src="https://www.youtube.com/embed/xKau76yc4HE?si=dX_QpzwZ4sDmj3rB" 
+                        title="Canción" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                        </iframe>
+                        <br>
+                        <p>
+                            "Llorando se fue"<br>
+                            Álbum: Canto a la mujer de mi pueblo (1981)<br>
+                            Año más representativo: 1981-1982<br>
+                            Fue el tema que inspiró la famosa versión lambada de Kaoma, convirtiéndose en un ícono internacional.
+                        </p>
+                    </td>
+                    <td>
+                        
+                        <iframe width="90%" height="auto" 
+                        src="https://www.youtube.com/embed/Pfj-HduRm2w?si=4kdHOmSHzuCpQkv4" 
+                        title="Canción" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                        </iframe>
+                        <p>
+                            "Chuquiago Marka"<br>
+                            Álbum: Desde el alma de mi pueblo (2002)<br>
+                            Año más representativo: 2002-2003<br>
+                            Un homenaje a la ciudad de La Paz, capital administrativa de Bolivia.
+                        </p>
+                    </td>
+                    <td>
+                        
+                        <iframe width="90%" height="auto" 
+                        src="https://www.youtube.com/embed/NBAqZltoqwE?si=YXqaTjDHkfp-Gaq_" 
+                        title="Canción" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                        </iframe>
+                        <p>
+                            "Wayayay"<br>
+                            Álbum: El árbol de mi destino (1990)<br>
+                            Año más representativo: 1990-1991<br>
+                            Canción nostálgica que reafirmó su conexión con las raíces andinas.
+                        </p>
+                    </td>
+                    <td>
+                        
+                        <iframe width="90%" height="auto" 
+                        src="https://www.youtube.com/embed/zisJ8oAV-CI?si=toyTcZAkbRk5sIQW" 
+                        title="Canción" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                        </iframe>
+                        <p>
+                            "Fría"<br>
+                            Álbum: Al final (1984)<br>
+                            Año más representativo: 1984-1985<br>
+                            Uno de los temas más sentimentales del grupo, muy popular en esta época.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="back-to-nav">
+            <a href="#">Volver al menú</a>
+        </div>
+    </section>
+
+    <section id="seccion4">
+        <h2>Area de texto</h2>
+        <table>
+            <tr>
+                <td><img src="imagen 6.jpg"></img></td>
+                <td><textarea placeholder="Biografía de Los Kjarkas:
+                    Los Kjarkas son una icónica agrupación boliviana de música andina formada en 1965 en Capinota, Cochabamba, por los hermanos Hermosa, especialmente por Wilson y Gonzalo Hermosa, quienes se destacaron como compositores y líderes del grupo. Con raíces profundamente arraigadas en la cultura indígena de los Andes, su música fusiona instrumentos tradicionales como la quena, el charango y la zampoña con letras poéticas que exaltan el amor, la naturaleza y la identidad andina. A lo largo de su trayectoria, Los Kjarkas han llevado la música de Bolivia a escenarios internacionales, convirtiéndose en embajadores culturales y uno de los referentes más destacados del folclore latinoamericano.
+                    
+                    El grupo alcanzó un reconocimiento global gracias a canciones emblemáticas como 'Llorando se fue' , cuyo ritmo inspiró el famoso 'Lambada' . Su influencia ha sido determinante en la preservación y difusión de la música andina. Además, Los Kjarkas han sido pioneros en la formación de nuevas generaciones de músicos a través de la fundación del Instituto 'Pro Música Bolivia'. A pesar de los cambios en su alineación a lo largo de los años, el espíritu y legado de Los Kjarkas continúan vivos, con más de cinco décadas de trayectoria artística.
+                    
+                    Álbumes destacados y fechas importantes:
+                    
+                    'Canto a la mujer de mi pueblo' (1978): Uno de sus primeros álbumes, con letras que celebran la fortaleza de la mujer andina.
+                    'Desde el alma de mi pueblo' (1981): Incluye el tema icónico 'Llorando se fue'.
+                    'Tecno Kjarkas' (1990): Una innovadora mezcla de música andina con ritmos contemporáneos.
+                    'El árbol de mi destino' (1997): Un álbum introspectivo que refleja su madurez artística.
+                    '35 años, desde el Japón' (2001): Celebración de su trayectoria con presentaciones en Japón, destacando su éxito internacional.
+                    Su legado sigue creciendo con más de 25 discos lanzados, consolidando su lugar como uno de los grupos más importantes de la música folclórica de Latinoamérica."></textarea>
+            </td>
+            </tr>
+        </table>
+        <div class="back-to-nav">
+            <a href="#">Volver al menú</a>
+        </div>
+    </section>
+
+    
+    <section id="seccion5">
+        <h2>Calculadora</h2>
+        <center>
+            <div class="calculator">
+                <input type="text" id="display" disabled>
+                <div class="row">
+                    <button class="button" onclick="clearDisplay()">C</button>
+                    <button class="button" onclick="appendToDisplay('/')">/</button>
+                    <button class="button" onclick="appendToDisplay('*')">*</button>
+                    <button class="button" onclick="deleteLast()">←</button>
+                </div>
+                <div class="row">
+                    <button class="button" onclick="appendToDisplay('7')">7</button>
+                    <button class="button" onclick="appendToDisplay('8')">8</button>
+                    <button class="button" onclick="appendToDisplay('9')">9</button>
+                    <button class="button" onclick="appendToDisplay('-')">-</button>
+                </div>
+                <div class="row">
+                    <button class="button" onclick="appendToDisplay('4')">4</button>
+                    <button class="button" onclick="appendToDisplay('5')">5</button>
+                    <button class="button" onclick="appendToDisplay('6')">6</button>
+                    <button class="button" onclick="appendToDisplay('+')">+</button>
+                </div>
+                <div class="row">
+                    <button class="button" onclick="appendToDisplay('1')">1</button>
+                    <button class="button" onclick="appendToDisplay('2')">2</button>
+                    <button class="button" onclick="appendToDisplay('3')">3</button>
+                    <button class="button" onclick="calculateResult()">=</button>
+                </div>
+                <div class="row">
+                    <button class="button" style="width: 145px;" onclick="appendToDisplay('0')">0</button>
+                    <button class="button" onclick="appendToDisplay('.')">.</button>
+                </div>
+            </div>
+            
+            
+            <script>
+                function appendToDisplay(value) {
+                    document.getElementById('display').value += value;
+                }
+            
+            
+                function clearDisplay() {
+                    document.getElementById('display').value = '';
+                }
+            
+            
+                function deleteLast() {
+                    var display = document.getElementById('display').value;
+                    document.getElementById('display').value = display.slice(0, -1);
+                }
+            
+            
+                function calculateResult() {
+                    var display = document.getElementById('display').value;
+                    try {
+                        document.getElementById('display').value = eval(display);
+                    } catch (error) {
+                        document.getElementById('display').value = 'Error';
+                    }
+                }
+            </script>
+        </center>
+        
+        <div class="back-to-nav">
+            <a href="#">Volver al menú</a>
+        </div>
+    </section>
+
+
+    <footer>
+        <p><a href="https://www.facebook.com/LosKjarkasOficial" style="color: white;">© Facabook kjarkas bolivia</a></p>
+        <p><a href="https://www.youtube.com/channel/UC_Mz4cPcSK-iNh9rrillY1g" style="color: white;">youtube kjarkas oficial</a></p>
+        <p><a href="https://www.instagram.com/kjarkasoficial/?hl=es" style="color: white;">Instragram Kjarkas oficial</a></p>
+    </footer>
+</body>
+</html>
